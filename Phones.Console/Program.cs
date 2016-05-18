@@ -16,7 +16,7 @@ namespace OlimClimbing.Phone
 
             public char Digit { get; private set; }
             public bool IsDialed { get; set; }
-            public Hashtable Child { get; set; }
+            public Dictionary<char, Node> Child { get; set; }
 
 
         }
@@ -43,14 +43,14 @@ namespace OlimClimbing.Phone
                     //No nodes
                     if (currentNode.Child == null)
                     {
-                        currentNode.Child = new Hashtable { { digit, nodeToAdd } };
+                        currentNode.Child = new Dictionary<char, Node> { { digit, nodeToAdd } };
                         currentNode = nodeToAdd;
                         continue;
                     }
 
                     //Find node
-                    var finded = (Node)currentNode.Child[digit];
-                    if (finded != null)
+                    Node finded;
+                    if (currentNode.Child.TryGetValue(digit, out finded))
                     {
                         if (finded.IsDialed)
                         {
@@ -79,7 +79,7 @@ namespace OlimClimbing.Phone
 
             List<string> lines = new List<string>();
             string l;
-            while ((l = System.Console.ReadLine()) != null)
+            while ((l = Console.ReadLine()) != null)
             {
 
                 lines.Add(l);
