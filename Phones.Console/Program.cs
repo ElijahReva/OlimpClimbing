@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace OlimClimbing.Phone
@@ -9,49 +9,38 @@ namespace OlimClimbing.Phone
     {
         public class Node
         {
-            public Node(char value = default(char))
-            {
-                Digit = value;
-            }
-
-            public char Digit { get; private set; }
-            public bool IsDialed { get; set; }
-            public Dictionary<char, Node> Child { get; set; }
-
-
+           public bool IsDialed;
+           public Node[] Child; 
         }
 
         public class DigitalTree
         {
-
-
-            private readonly Node root;
-
-            public DigitalTree()
-            {
-                this.root = new Node();
-            }
+            private readonly Node root = new Node();
 
             public bool Add(string number)
             {
-                var currentNode = root;
+                var currentNode = this.root;
                 foreach (var digit in number)
                 {
+
+                    var intedChar = digit & 0x0f;
                     //Create node for adding
-                    var nodeToAdd = new Node(digit);
+                    var nodeToAdd = new Node();
 
                     //No nodes
                     if (currentNode.Child == null)
                     {
-                        currentNode.Child = new Dictionary<char, Node> { { digit, nodeToAdd } };
+                        currentNode.Child = new Node[10];
+                        currentNode.Child[intedChar] = nodeToAdd;
                         currentNode = nodeToAdd;
                         continue;
                     }
 
-                    //Find node
-                    Node finded;
-                    if (currentNode.Child.TryGetValue(digit, out finded))
+                    //Get node
+                    Node finded = currentNode.Child[intedChar];
+                    if (finded != null)
                     {
+                        //Checks for already called number
                         if (finded.IsDialed)
                         {
                             return false;
@@ -60,7 +49,7 @@ namespace OlimClimbing.Phone
                     }
                     else
                     {
-                        currentNode.Child.Add(digit, nodeToAdd);
+                        currentNode.Child[intedChar] = nodeToAdd;
                         currentNode = nodeToAdd;
                     }
                 }
@@ -75,8 +64,7 @@ namespace OlimClimbing.Phone
 
         private static void Main(string[] args)
         {
-
-
+            //var lines = File.ReadAllLines("phone.in").ToList();
             List<string> lines = new List<string>();
             string l;
             while ((l = Console.ReadLine()) != null)
@@ -86,37 +74,31 @@ namespace OlimClimbing.Phone
             }
 
 
-            var testCases = new List<string[]>();
-            var testCasesCount = int.Parse(lines[0]);
-            int totalStrreaded = 0;
-
+            var testCasesCount = int.Parse(lines[0]);//[0] & 0x0f;
+            int totalLinesReaded = 0;
 
             for (int i = 0; i < testCasesCount; i++)
             {
-                var currentHeadOfTestCase = i + totalStrreaded + 1;
+                var currentHeadOfTestCase = totalLinesReaded + i + 1;
                 var phonesCount = int.Parse(lines[currentHeadOfTestCase]);
-                totalStrreaded += phonesCount;
-                var testcase = new string[phonesCount];
+                totalLinesReaded += phonesCount;
+                var tree = new DigitalTree();
+                bool broken = false;
                 for (int j = 0; j < phonesCount; j++)
-                {
-                    testcase[j] = lines[currentHeadOfTestCase + 1 + j];
+                {                                                        
+                    if (tree.Add(lines[currentHeadOfTestCase + 1 + j])) continue;
+                    broken = true;
+                    break;
                 }
-                testCases.Add(testcase);
-            }
-
-            foreach (var testCase in testCases)
-            {
+                if (broken)
+                {
+                    Console.WriteLine("NO");
+                    continue;
+                }
+                Console.WriteLine("YES");
                 
-                Console.WriteLine(Is(testCase) ? "YES" : "NO");
             }
-
-            
-        }
-
-        public static bool Is(string[] phones)
-        {
-            var tree = new DigitalTree();
-            return phones.All(p => tree.Add(p));
-        }
+            //Console.ReadKey();
+        } 
     }
 }
