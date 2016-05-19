@@ -7,8 +7,8 @@
     <ProjectGuid>{2050E0A9-B2EA-4596-AF4C-E5DAF33C3FBD}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Phones.Console</RootNamespace>
-    <AssemblyName>Phones.Console</AssemblyName>
+    <RootNamespace>OlimClimbing.Phones</RootNamespace>
+    <AssemblyName>OlimClimbing.Phones</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

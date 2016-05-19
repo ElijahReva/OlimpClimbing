@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
-namespace OlimClimbing.Phone
+namespace OlimClimbing.Phones
 {
     public static class Program
     {
         public class Node
         {
-           public bool IsDialed;
-           public Node[] Child; 
+            public bool IsDialed;
+            public Node[] Child;
         }
 
         public class DigitalTree
@@ -22,7 +19,6 @@ namespace OlimClimbing.Phone
                 var currentNode = this.root;
                 foreach (var digit in number)
                 {
-
                     var intedChar = digit & 0x0f;
                     //Create node for adding
                     var nodeToAdd = new Node();
@@ -62,43 +58,35 @@ namespace OlimClimbing.Phone
             }
         }
 
+        private static int totalCases;
+        private static int totalNumbers;
+        private static DigitalTree tree;
+        private static bool broken;
+
         private static void Main(string[] args)
         {
-            //var lines = File.ReadAllLines("phone.in").ToList();
-            List<string> lines = new List<string>();
-            string l;
-            while ((l = Console.ReadLine()) != null)
+            totalCases = int.Parse(Console.ReadLine());
+            for (var i = 0; i < totalCases; i++)
             {
-
-                lines.Add(l);
-            }
-
-
-            var testCasesCount = int.Parse(lines[0]);//[0] & 0x0f;
-            int totalLinesReaded = 0;
-
-            for (int i = 0; i < testCasesCount; i++)
-            {
-                var currentHeadOfTestCase = totalLinesReaded + i + 1;
-                var phonesCount = int.Parse(lines[currentHeadOfTestCase]);
-                totalLinesReaded += phonesCount;
-                var tree = new DigitalTree();
-                bool broken = false;
-                for (int j = 0; j < phonesCount; j++)
-                {                                                        
-                    if (tree.Add(lines[currentHeadOfTestCase + 1 + j])) continue;
-                    broken = true;
-                    break;
-                }
-                if (broken)
+                totalNumbers = int.Parse(Console.ReadLine());
+                tree = new DigitalTree();
+                broken = false;
+                for (var j = 0; j < totalNumbers; j++)
                 {
+                    if (broken)
+                    {
+                        Console.ReadLine();
+                        continue;
+                    }
+                    if (tree.Add(Console.ReadLine())) continue;
+                    broken = true;
                     Console.WriteLine("NO");
-                    continue;
                 }
-                Console.WriteLine("YES");
-                
+                if (!broken)
+                {
+                    Console.WriteLine("YES");
+                }
             }
-            //Console.ReadKey();
-        } 
+        }
     }
 }

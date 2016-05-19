@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phones.Console", "Phones.Console\Phones.Console.csproj", "{2050E0A9-B2EA-4596-AF4C-E5DAF33C3FBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlimClimbing.Phones", "Phones.Console\OlimClimbing.Phones.csproj", "{2050E0A9-B2EA-4596-AF4C-E5DAF33C3FBD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit-tests", "unit-tests", "{ED0B9D72-AD80-4C91-9BDD-177B3DBE00FC}"
 EndProject

@@ -48,9 +48,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Phones.Console\Phones.Console.csproj">
+    <ProjectReference Include="..\Phones.Console\OlimClimbing.Phones.csproj">
       <Project>{2050e0a9-b2ea-4596-af4c-e5daf33c3fbd}</Project>
-      <Name>Phones.Console</Name>
+      <Name>OlimClimbing.Phones</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
