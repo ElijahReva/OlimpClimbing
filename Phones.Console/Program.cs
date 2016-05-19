@@ -1,90 +1,84 @@
-﻿using System;
-
-namespace OlimClimbing.Phones
-{
+﻿namespace OlimClimbing.Phones
+{            
     public static class Program
-    {
-        public class Node
+    {                   
+        private sealed class Node
         {
             public bool IsDialed;
             public Node[] Child;
         }
 
-        public class DigitalTree
-        {
-            private readonly Node root = new Node();
-
-            public bool Add(string number)
-            {
-                var currentNode = this.root;
-                foreach (var digit in number)
-                {
-                    var intedChar = digit & 0x0f;
-                    //Create node for adding
-                    var nodeToAdd = new Node();
-
-                    //No nodes
-                    if (currentNode.Child == null)
-                    {
-                        currentNode.Child = new Node[10];
-                        currentNode.Child[intedChar] = nodeToAdd;
-                        currentNode = nodeToAdd;
-                        continue;
-                    }
-
-                    //Get node
-                    Node finded = currentNode.Child[intedChar];
-                    if (finded != null)
-                    {
-                        //Checks for already called number
-                        if (finded.IsDialed)
-                        {
-                            return false;
-                        }
-                        currentNode = finded;
-                    }
-                    else
-                    {
-                        currentNode.Child[intedChar] = nodeToAdd;
-                        currentNode = nodeToAdd;
-                    }
-                }
-                if (currentNode.Child != null)
-                {
-                    return false;
-                }
-                currentNode.IsDialed = true;
-                return true;
-            }
-        }
-
         private static int totalCases;
         private static int totalNumbers;
-        private static DigitalTree tree;
         private static bool broken;
+        private static readonly Node root = new Node();
+
+        private static bool Add(string number)
+        {
+            var currentNode = root;
+            for (int index = 0; index < number.Length; index++)
+            {
+                var digit = number[index];
+                var intedChar = digit & 0x0f;
+                //Create node for adding
+                var nodeToAdd = new Node();
+
+                //No nodes
+                if (currentNode.Child == null)
+                {
+                    currentNode.Child = new Node[10];
+                    currentNode.Child[intedChar] = nodeToAdd;
+                    currentNode = nodeToAdd;
+                    continue;
+                }
+
+                //Get node
+                var finded = currentNode.Child[intedChar];
+                if (finded != null)
+                {
+                    //Checks for already called number
+                    if (finded.IsDialed)
+                    {
+                        return false;
+                    }
+                    currentNode = finded;
+                }
+                else
+                {
+                    currentNode.Child[intedChar] = nodeToAdd;
+                    currentNode = nodeToAdd;
+                }
+            }
+            if (currentNode.Child != null)
+            {
+                return false;
+            }
+            currentNode.IsDialed = true;
+            return true;
+        }   
 
         private static void Main(string[] args)
         {
-            totalCases = int.Parse(Console.ReadLine());
+            totalCases = int.Parse(System.Console.ReadLine());
             for (var i = 0; i < totalCases; i++)
             {
-                totalNumbers = int.Parse(Console.ReadLine());
-                tree = new DigitalTree();
+                totalNumbers = int.Parse(System.Console.ReadLine());
+                root.Child = null;
                 broken = false;
                 for (var j = 0; j < totalNumbers; j++)
                 {
                     if (broken)
                     {
-                        Console.ReadLine();
+                        System.Console.ReadLine();
                         continue;
                     }
-                    if (tree.Add(Console.ReadLine())) continue;
+                    if (Add(System.Console.ReadLine())) continue;
                     broken = true;
-                    Console.WriteLine("NO");
+                    System.Console.WriteLine("NO");
                 }
                 if (!broken)
                 {
-                    Console.WriteLine("YES");
+                    System.Console.WriteLine("YES");
                 }
             }
         }
