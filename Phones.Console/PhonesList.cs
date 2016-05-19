@@ -1,7 +1,7 @@
 ﻿namespace OlimClimbing.Phones
-{                                                                   
-    public static class Program
-    {                   
+{
+    public static class PhonesList
+    {
         private sealed class Node
         {
             public bool IsDialed;
@@ -10,12 +10,11 @@
 
         private static int totalCases;
         private static int totalNumbers;
-        public static string number;   
+        private static string number;
         private static bool broken;
         private static readonly Node root = new Node();
         private static Node currentNode = root;
 
-        
         private static void Main()
         {
             totalCases = int.Parse(System.Console.ReadLine());
@@ -62,12 +61,12 @@
                     }
                     if (currentNode.Child != null)
                     {
-                        broken = true; 
+                        broken = true;
                     }
-                    currentNode.IsDialed = true; 
+                    currentNode.IsDialed = true;
                 }
                 System.Console.WriteLine(broken ? "NO" : "YES");
-            }                        
-        }   
+            }
+        }
     }
 }
