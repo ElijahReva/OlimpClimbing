@@ -4,6 +4,10 @@
     {
         private static void Main(string[] args)
         {
+            //Hash set
+            //Decrement from lower set
+            //while this > previoust
+            //loop from second
         }
     }
 }

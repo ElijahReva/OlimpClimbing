@@ -1,5 +1,7 @@
 ﻿namespace OlimClimbing.Phones
 {
+    //fast input
+    //custom array
     public static class PhonesList
     {
         private sealed class Node
