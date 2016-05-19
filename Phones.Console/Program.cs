@@ -1,5 +1,5 @@
 ﻿namespace OlimClimbing.Phones
-{            
+{                                                                   
     public static class Program
     {                   
         private sealed class Node
@@ -10,54 +10,13 @@
 
         private static int totalCases;
         private static int totalNumbers;
+        public static string number;   
         private static bool broken;
         private static readonly Node root = new Node();
+        private static Node currentNode = root;
 
-        private static bool Add(string number)
-        {
-            var currentNode = root;
-            for (int index = 0; index < number.Length; index++)
-            {
-                var digit = number[index];
-                var intedChar = digit & 0x0f;
-                //Create node for adding
-                var nodeToAdd = new Node();
-
-                //No nodes
-                if (currentNode.Child == null)
-                {
-                    currentNode.Child = new Node[10];
-                    currentNode.Child[intedChar] = nodeToAdd;
-                    currentNode = nodeToAdd;
-                    continue;
-                }
-
-                //Get node
-                var finded = currentNode.Child[intedChar];
-                if (finded != null)
-                {
-                    //Checks for already called number
-                    if (finded.IsDialed)
-                    {
-                        return false;
-                    }
-                    currentNode = finded;
-                }
-                else
-                {
-                    currentNode.Child[intedChar] = nodeToAdd;
-                    currentNode = nodeToAdd;
-                }
-            }
-            if (currentNode.Child != null)
-            {
-                return false;
-            }
-            currentNode.IsDialed = true;
-            return true;
-        }   
-
-        private static void Main(string[] args)
+        
+        private static void Main()
         {
             totalCases = int.Parse(System.Console.ReadLine());
             for (var i = 0; i < totalCases; i++)
@@ -72,15 +31,43 @@
                         System.Console.ReadLine();
                         continue;
                     }
-                    if (Add(System.Console.ReadLine())) continue;
-                    broken = true;
-                    System.Console.WriteLine("NO");
+                    currentNode = root;
+                    number = System.Console.ReadLine();
+                    for (byte index = 0; index < number.Length; index++)
+                    {
+                        //No nodes
+                        var digit = number[index] & 0x0f;
+                        if (currentNode.Child == null)
+                        {
+                            currentNode.Child = new Node[10];
+                            currentNode = currentNode.Child[digit] = new Node();
+                            continue;
+                        }
+
+                        //Get node
+                        if (currentNode.Child[digit] == null)
+                        {
+                            currentNode = currentNode.Child[digit] = new Node();
+                        }
+                        else
+                        {
+                            //Checks for already called number
+                            var node = currentNode.Child[digit];
+                            if (node.IsDialed)
+                            {
+                                broken = true;
+                            }
+                            currentNode = node;
+                        }
+                    }
+                    if (currentNode.Child != null)
+                    {
+                        broken = true; 
+                    }
+                    currentNode.IsDialed = true; 
                 }
-                if (!broken)
-                {
-                    System.Console.WriteLine("YES");
-                }
-            }
-        }
+                System.Console.WriteLine(broken ? "NO" : "YES");
+            }                        
+        }   
     }
 }

@@ -9,6 +9,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit-tests", "unit-tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phones.Tests", "Phones.Tests\Phones.Tests.csproj", "{7D804F10-C519-4BDD-A96B-15718015E42D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlimpClimbing.CD", "OlimpClimbing.CD\OlimpClimbing.CD.csproj", "{CC2E58FF-7930-408C-8A64-19B59C0F4EBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "problems", "problems", "{CC91D855-0A3C-450D-9246-7FC45D0ADE24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlimpClimbing.HelloWorld", "OlimpClimbing.HelloWorld\OlimpClimbing.HelloWorld.csproj", "{3A304112-5D0E-4D04-A31F-A780346A357F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,11 +29,22 @@ Global
 		{7D804F10-C519-4BDD-A96B-15718015E42D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D804F10-C519-4BDD-A96B-15718015E42D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D804F10-C519-4BDD-A96B-15718015E42D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC2E58FF-7930-408C-8A64-19B59C0F4EBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC2E58FF-7930-408C-8A64-19B59C0F4EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC2E58FF-7930-408C-8A64-19B59C0F4EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC2E58FF-7930-408C-8A64-19B59C0F4EBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A304112-5D0E-4D04-A31F-A780346A357F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A304112-5D0E-4D04-A31F-A780346A357F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A304112-5D0E-4D04-A31F-A780346A357F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A304112-5D0E-4D04-A31F-A780346A357F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{2050E0A9-B2EA-4596-AF4C-E5DAF33C3FBD} = {CC91D855-0A3C-450D-9246-7FC45D0ADE24}
 		{7D804F10-C519-4BDD-A96B-15718015E42D} = {ED0B9D72-AD80-4C91-9BDD-177B3DBE00FC}
+		{CC2E58FF-7930-408C-8A64-19B59C0F4EBC} = {CC91D855-0A3C-450D-9246-7FC45D0ADE24}
+		{3A304112-5D0E-4D04-A31F-A780346A357F} = {CC91D855-0A3C-450D-9246-7FC45D0ADE24}
 	EndGlobalSection
 EndGlobal

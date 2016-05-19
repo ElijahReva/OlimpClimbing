@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 using NUnit.Framework;
-using OlimClimbing.Phone;
+using OlimClimbing.Phones;
 
 namespace Phones.Tests
 {
@@ -14,13 +14,13 @@ namespace Phones.Tests
 
         }
 
-        [Test(Description = "Test cases for digital tree")]
-        [TestCaseSource(typeof(DigitalCasesFactory),nameof(DigitalCasesFactory.TestCases))]
-        public bool AssertDigitalTree(string[] phones)
-        {
-            var tree = new Program.DigitalTree();
-            return phones.All(phone => tree.Add(phone));
-        }
+        //[Test(Description = "Test cases for digital tree")]
+        //[TestCaseSource(typeof(DigitalCasesFactory),nameof(DigitalCasesFactory.TestCases))]
+        //public bool AssertDigitalTree(string[] phones)
+        //{
+        //    var tree = new Program.DigitalTree();
+        //    return phones.All(phone => tree.Add(phone));
+        //}
     }
 
     public static class DigitalCasesFactory
