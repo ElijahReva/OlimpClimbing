@@ -4,6 +4,10 @@
     {
         private float _latitude;
         private float _longitude;
+        public override string ToString()
+        {
+            return $"{_latitude} {_longitude}";
+        }
 
         public Coord(float latitude, float longitude)
         {
